@@ -1,5 +1,4 @@
-import React, { useState, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios'; 
 import * as XLSX from 'xlsx'; 
@@ -27,10 +26,6 @@ const FileUploader = ({ onDrop }) => {
 };
 
 const ExcelFile = () => {
-  const [data, setData] = useState([]);
-  const location = useLocation();
-  const { state } = location;
-  const { email1 } = state || {};
   const requiredColumns = ['S.No', 'Name', 'EMP', 'Email', 'D.O.B'];
 
   const handleFileUpload = async (file) => {
@@ -47,7 +42,7 @@ const ExcelFile = () => {
       const EMPID = 'EMP';
       const Email = 'Email';
       const DOB = 'D.O.B';
-
+      // eslint-disable-next-line
       const convertedData = jsonData.slice(1).map(async (row) => {
         if (!isNaN(Number(row[requiredColumns.indexOf(sno)]))) {
           console.log(row[requiredColumns.indexOf(sno)]);
@@ -94,7 +89,6 @@ const ExcelFile = () => {
       });
       alert("Your file uploaded successfully");
 
-      setData(convertedData);
     };
     reader.readAsBinaryString(file);
   };

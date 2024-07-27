@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import ExcelFile from './Components/ExcelFile/ExcelFile';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
