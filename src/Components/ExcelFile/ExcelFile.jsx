@@ -73,7 +73,7 @@ const ExcelFile = () => {
             console.log(convertedRow[EMPID]);
             console.log(convertedRow[Email]);
             console.log(convertedRow[DOB]);
-            const response = await axios.post('https://birthday-nr6q7chbl-sivas-projects-70b20ed5.vercel.app/api/employees/add', {
+            const response = await axios.post('https://birthday-three-lac.vercel.app/api/employees/add', {
               EmpName: convertedRow[Name],
               EMPID: convertedRow[EMPID],
               Email: convertedRow[Email],
