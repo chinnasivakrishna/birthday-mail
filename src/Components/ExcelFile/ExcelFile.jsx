@@ -60,6 +60,7 @@ const ExcelFile = () => {
             const dateString = row[requiredColumns.indexOf(DOB)];
             console.log(dateString);
             convertedRow[DOB] = new Date(dateString);
+            console.log(convertedRow[DOB]);
           }
 
           if (requiredColumns.includes(Name)) {
