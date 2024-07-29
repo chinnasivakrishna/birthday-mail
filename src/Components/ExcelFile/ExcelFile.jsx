@@ -24,6 +24,14 @@ const FileUploader = ({ onDrop }) => {
     </div>
   );
 };
+const send = async() => {
+  try {
+    const response = await axios.get("http://localhost:8080/send");
+    console.log(response)
+  } catch (error) {
+    
+  }
+}
 
 const ExcelFile = () => {
   const requiredColumns = ['S.No', 'Name', 'EMP', 'Email', 'D.O.B'];
@@ -103,6 +111,7 @@ const ExcelFile = () => {
       <button className="download-button" onClick={handleDownload}>
         <i class="fa-solid fa-download"></i>  Download Sample Excel
       </button>
+      <button onClick={send}>mail</button>
     </div>
   );
 };
