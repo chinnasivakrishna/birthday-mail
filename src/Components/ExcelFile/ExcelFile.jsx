@@ -26,7 +26,7 @@ const FileUploader = ({ onDrop }) => {
 };
 const send = async() => {
   try {
-    const response = await axios.get("https://birthday-three-lac.vercel.app/send");
+    const response = await axios.get("https://birthday-5nx0.onrender.com/send");
     console.log(response)
   } catch (error) {
     
