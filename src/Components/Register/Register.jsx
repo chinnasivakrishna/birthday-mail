@@ -43,7 +43,7 @@ const RegisterForm = () => {
     if (validate()) {
       setIsSubmitted(true);
       try {
-        const response = await axios.post("http://localhost:8080/api/user/add", {
+        const response = await axios.post("https://birthday-5nx0.onrender.com/api/user/add", {
           Name: username,
           Email: email,
           Password: password,
