@@ -1,0 +1,141 @@
+
+
+header {
+  background: #000;
+  color: #fff;
+  padding: 20px;
+  height: 5vh;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+nav ul {
+  padding-left: 10px;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.auth-buttons button {
+  margin-left: 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.auth-buttons .login {
+  background: #fff;
+  color: #000;
+}
+
+.auth-buttons .signup {
+  background: #ff6347;
+  color: #fff;
+}
+
+.hero {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.hero-buttons button {
+  margin: 0 10px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.hero-buttons .main-action {
+  background: #ff6347;
+  color: #fff;
+}
+
+.hero-buttons .secondary-action {
+  background: #fff;
+}
+
+.hero-images {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hero-images img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.features {
+  padding: 50px 20px;
+  text-align: center;
+  display: flex;
+}
+
+.feature {
+  margin-bottom: 40px;
+}
+
+
+
+.pricing {
+  padding: 50px 20px;
+  background: #f0f0f0;
+  text-align: center;
+}
+
+.pricing-plan {
+  display: inline-block;
+  margin: 20px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ccc;
+  width: 200px;
+}
+
+.steps {
+  padding: 50px 20px;
+  text-align: center;
+}
+
+.step {
+  margin-bottom: 40px;
+}
+.app {
+  background-color: #121212;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+
+footer {
+  padding: 20px;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+footer .social-media a {
+  color: #fff;
+  margin: 0 10px;
+  text-decoration: none;
+}

@@ -59,7 +59,7 @@ const ExcelFile = () => {
           if (requiredColumns.includes(DOB) && row[requiredColumns.indexOf(DOB)] !== undefined) {
             const dateString = row[requiredColumns.indexOf(DOB)];
             console.log(dateString);
-            convertedRow[DOB] = new Date(dateString);
+            convertedRow[DOB] = dateString;
             console.log(convertedRow[DOB]);
           }
 
@@ -82,7 +82,7 @@ const ExcelFile = () => {
             console.log(convertedRow[EMPID]);
             console.log(convertedRow[Email]);
             console.log(convertedRow[DOB]);
-            const response = await axios.post('https://birthday-three-lac.vercel.app/api/employees/add', {
+            const response = await axios.post('http://localhost:8080/api/employees/add', {
               EmpName: convertedRow[Name],
               EMPID: convertedRow[EMPID],
               Email: convertedRow[Email],
@@ -112,7 +112,6 @@ const ExcelFile = () => {
       <button className="download-button" onClick={handleDownload}>
         <i class="fa-solid fa-download"></i>  Download Sample Excel
       </button>
-      <button onClick={send}>mail</button>
     </div>
   );
 };
