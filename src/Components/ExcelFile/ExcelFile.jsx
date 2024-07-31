@@ -3,6 +3,11 @@ import { useDropzone } from 'react-dropzone';
 import axios from 'axios'; 
 import * as XLSX from 'xlsx'; 
 import './ExcelFile.css';
+import Header from '../Header/Header';
+import Head from '../Head/Header';
+import ExcelHeader from './ExcelHeader';
+import Footer from '../Foot/Footer';
+import upload from '../photos/upload-unscreen.gif'
 
 const FileUploader = ({ onDrop }) => {
   const handleDrop = useCallback((acceptedFiles) => {
@@ -14,7 +19,7 @@ const FileUploader = ({ onDrop }) => {
   return (
     <div {...getRootProps()} className="dropzone">
       <input {...getInputProps()} />
-      <label htmlFor="file-input" className="custom-file-upload">Upload Excel File</label>
+      <img src={upload} className='upload'/>
     
       {isDragActive ? (
         <p>Drop the Excel here ...</p>
@@ -102,17 +107,14 @@ const ExcelFile = () => {
     reader.readAsBinaryString(file);
   };
 
-  const handleDownload = () => {
-    window.location.href = 'birthday.xlsx';
-  };
 
   return (
+    <div><ExcelHeader />
     <div className="container">
+      
       <FileUploader onDrop={handleFileUpload} />
-      <button className="download-button" onClick={handleDownload}>
-        <i class="fa-solid fa-download"></i>  Download Sample Excel
-      </button>
-    </div>
+      
+    </div><Footer /></div>
   );
 };
 
