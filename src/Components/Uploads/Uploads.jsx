@@ -1,6 +1,6 @@
 import Header from '../Head/Header';
 import Footer from '../Foot/Footer';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
 import './Uploads.css';
 import axios from 'axios';
@@ -10,30 +10,38 @@ const Uploads = () => {
   const [searchType, setSearchType] = useState('id'); 
   const [searchValue, setSearchValue] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [transactions, setTransactions] = useState([]);
+  const [employees, setEmployees] = useState([]);
   const [editRowId, setEditRowId] = useState(null); // State to track the row being edited
   const [editValues, setEditValues] = useState({}); // State to track the values being edited
-  const transactionsPerPage = 10;
+  const employeesPerPage = 10;
+  const navigate = useNavigate();
   const location = useLocation();
   const { state } = location;
   const { user } = state || {};
+  
 
   useEffect(() => {
-    
+    if (!location.state) {
+    navigate('/');
+    return null;
+    }
+    else {
+      fetchAccounts();
+    }
 
-    fetchAccounts();
+    
   }, [user]);
   const fetchAccounts = async () => {
       try {
         const response = await axios.get(`https://birthday-5nx0.onrender.com/api/employees/data/${user}/`);
-        setTransactions(response.data.DOB);
+        setEmployees(response.data.DOB);
         console.log(response);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-  const accountsacc = transactions.map((accountss, index) => ({
+  const accountsacc = employees.map((accountss, index) => ({
     ...accountss,
     id: index + 1
   }));
@@ -47,24 +55,24 @@ const Uploads = () => {
     setCurrentPage(1);
   };
 
-  const filteredTransactions = accountsacc.filter((transaction) => {
+  const filteredEmployees = accountsacc.filter((employee) => {
     if (searchType === 'id') {
-      return transaction.id.toString().includes(searchValue);
+      return employee.id.toString().includes(searchValue);
     } else if (searchType === 'name') {
-      return transaction.EmpName.includes(searchValue);
+      return employee.EmpName.includes(searchValue);
     } else if (searchType === 'email') {
-      return transaction.Email.includes(searchValue);
+      return employee.Email.includes(searchValue);
     } else if (searchType === 'dateCreated') {
-      return transaction.Date.includes(searchValue);
+      return employee.Date.includes(searchValue);
     }
     return false;
   });
 
-  const indexOfLastTransaction = currentPage * transactionsPerPage;
-  const indexOfFirstTransaction = indexOfLastTransaction - transactionsPerPage;
-  const currentTransactions = filteredTransactions.slice(indexOfFirstTransaction, indexOfLastTransaction);
+  const indexOfLastEmployee = currentPage * employeesPerPage;
+  const indexOfFirstEmployee = indexOfLastEmployee - employeesPerPage;
+  const currentEmployees = filteredEmployees.slice(indexOfFirstEmployee, indexOfLastEmployee);
 
-  const totalPages = Math.ceil(filteredTransactions.length / transactionsPerPage);
+  const totalPages = Math.ceil(filteredEmployees.length / employeesPerPage);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -111,13 +119,13 @@ const Uploads = () => {
     return new Date(dateString).toLocaleDateString([], options);
   };
 
-  const handleEditClick = (transaction) => {
-    setEditRowId(transaction.id);
+  const handleEditClick = (employee) => {
+    setEditRowId(employee.id);
     setEditValues({
-      EMPID: transaction.EMPID,
-      EmpName: transaction.EmpName,
-      Email: transaction.Email,
-      Date: transaction.Date,
+      EMPID: employee.EMPID,
+      EmpName: employee.EmpName,
+      Email: employee.Email,
+      Date: employee.Date,
     });
   };
 
@@ -129,17 +137,17 @@ const Uploads = () => {
     }));
   };
 
-  const handleSaveClick = async(transactionId) => {
+  const handleSaveClick = async(employeeId) => {
     console.log(editValues.Email)
-    console.log(transactionId)
+    console.log(employeeId)
    
-    setTransactions((prevTransactions) =>
-      prevTransactions.map((transaction) =>
-        transaction.id === transactionId ? { ...transaction, ...editValues } : transaction
+    setEmployees((prevEmployees) =>
+      prevEmployees.map((employee) =>
+        employee.id === employeeId ? { ...employee, ...editValues } : employee
       )
     );
      try {
-      const response = await axios.put(`https://birthday-5nx0.onrender.com/api/employees/update/${transactionId}`, {
+      const response = await axios.put(`https://birthday-5nx0.onrender.com/api/employees/update/${employeeId}`, {
       EmpName: editValues.EmpName,
       EMPID: editValues.EMPID,
       Email: editValues.Email,
@@ -187,9 +195,9 @@ const Uploads = () => {
             </tr>
           </thead>
           <tbody>
-            {currentTransactions.map((transaction) => (
-              <tr key={transaction.id} className={`${transaction.id % 2 === 0 ? 'odd' : 'even'}`}>
-                {editRowId === transaction.id ? (
+            {currentEmployees.map((employee) => (
+              <tr key={employee.id} className={`${employee.id % 2 === 0 ? 'odd' : 'even'}`}>
+                {editRowId === employee.id ? (
                   <>
                     <td>
                       <input
@@ -224,18 +232,18 @@ const Uploads = () => {
                       />
                     </td>
                     <td className="td">
-                      <button onClick={() => handleSaveClick(transaction._id)}>Done</button>
+                      <button onClick={() => handleSaveClick(employee._id)}>Done</button>
                     </td>
                   </>
                 ) : (
                     <>
-                      <td>{transaction.EMPID}</td>
-                      <td>{transaction.EmpName}</td>
+                      <td>{employee.EMPID}</td>
+                      <td>{employee.EmpName}</td>
                       
-                    <td>{transaction.Email}</td>
-                    <td className="td">{formatDate(transaction.Date)}</td>
+                    <td>{employee.Email}</td>
+                    <td className="td">{formatDate(employee.Date)}</td>
                     <td className="td">
-                      <button onClick={() => handleEditClick(transaction)}>Update</button>
+                      <button onClick={() => handleEditClick(employee)}>Update</button>
                     </td>
                   </>
                 )}
@@ -244,7 +252,7 @@ const Uploads = () => {
           </tbody>
         </table>
         <div className="pagination">
-          <span>Showing {indexOfFirstTransaction + 1} to {Math.min(indexOfLastTransaction, filteredTransactions.length)} of {filteredTransactions.length} entries</span>
+          <span>Showing {indexOfFirstEmployee + 1} to {Math.min(indexOfLastEmployee, filteredEmployees.length)} of {filteredEmployees.length} entries</span>
           <div>
             <button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
               &laquo;
