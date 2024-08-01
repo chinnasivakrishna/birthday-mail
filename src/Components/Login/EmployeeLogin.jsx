@@ -41,10 +41,6 @@ const LoginForm = () => {
     e.preventDefault();
     if (validate()) {
       try {
-    // const response = await axios.post("https://birthday-5nx0.onrender.com/api/user/login", {
-    //   Email: id,
-    //   Password: password
-        // })
         const response = await axios.post("https://birthday-5nx0.onrender.com/api/user/login", {
       Email: id,
       Password: password
