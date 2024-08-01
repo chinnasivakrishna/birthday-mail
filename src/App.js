@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import LandingPage from './Components/LandingPage/LandingPage';
 import EmployeeLogin from './Components/Login/EmployeeLogin';
 import RegisterForm from './Components/Register/Register';
+import Uploads from './Components/Uploads/Uploads';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path='/login' element={<EmployeeLogin />}/>
         <Route path="/dash" element={<ExcelFile />} />
         <Route path='/register' element={<RegisterForm />} />
+        <Route path='/upload' element={<Uploads />} />
       </Routes>
     </BrowserRouter>
   );

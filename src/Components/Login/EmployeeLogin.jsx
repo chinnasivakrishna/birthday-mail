@@ -41,17 +41,22 @@ const LoginForm = () => {
     e.preventDefault();
     if (validate()) {
       try {
-    const response = await axios.post("https://birthday-5nx0.onrender.com/api/user/login", {
+    // const response = await axios.post("https://birthday-5nx0.onrender.com/api/user/login", {
+    //   Email: id,
+    //   Password: password
+        // })
+        const response = await axios.post("http://localhost:8080/api/user/login", {
       Email: id,
       Password: password
     })
     console.log(response)
     
-        if (response.data.message == "Failed") {
-      toast.info('Invalid login Cradentials');
+        if (response.data.user) {
+          navigate('/dash',{state:{user:response.data.user.Name, id:response.data.user.Email}})
+      
     }
     else {
-         navigate('/dash')
+         toast.info('Invalid login Cradentials');
       
     }
   } catch (error) {
