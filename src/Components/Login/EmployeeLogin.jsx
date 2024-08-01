@@ -45,7 +45,7 @@ const LoginForm = () => {
       Email: id,
       Password: password
     })
-    console.log(response)
+    console.log(response.data.user)
         console.log(response.data.message === "Success")
         console.log(response.data.message)
           navigate('/dash',{state:{user:response.data.user.Name, id:response.data.user.Email}})
