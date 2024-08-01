@@ -51,7 +51,7 @@ const LoginForm = () => {
     })
     console.log(response)
     
-        if (response.data.user) {
+        if (response.data.message) {
           navigate('/dash',{state:{user:response.data.user.Name, id:response.data.user.Email}})
       
     }
