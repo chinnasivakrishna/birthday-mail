@@ -101,7 +101,7 @@ const ExcelFile = () => {
             console.log(convertedRow[EMPID]);
             console.log(convertedRow[Email]);
             console.log(convertedRow[DOB]);
-            const response = await axios.post('http://localhost:8080/api/employees/add', {
+            const response = await axios.post('https://birthday-5nx0.onrender.com/api/employees/add', {
               User: id,
               EmpName: convertedRow[Name],
               EMPID: convertedRow[EMPID],

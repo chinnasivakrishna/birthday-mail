@@ -25,7 +25,7 @@ const Uploads = () => {
   }, [user]);
   const fetchAccounts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/employees/data/${user}/`);
+        const response = await axios.get(`https://birthday-5nx0.onrender.com/api/employees/data/${user}/`);
         setTransactions(response.data.DOB);
         console.log(response);
       } catch (error) {
@@ -139,7 +139,7 @@ const Uploads = () => {
       )
     );
      try {
-      const response = await axios.put(`http://localhost:8080/api/employees/update/${transactionId}`, {
+      const response = await axios.put(`https://birthday-5nx0.onrender.com/api/employees/update/${transactionId}`, {
       EmpName: editValues.EmpName,
       EMPID: editValues.EMPID,
       Email: editValues.Email,
