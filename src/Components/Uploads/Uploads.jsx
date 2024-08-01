@@ -164,9 +164,9 @@ const Uploads = () => {
   return (
     <div>
       <Uploadheader />
-    <div className="transactions-page">
-      <div className="transactions-container">
-        <div className="transactions-header">
+    <div className="employee-page">
+      <div className="employee-container">
+        <div className="employee-header">
           <h2>Employees</h2>
           <div className="search-box">
             <select value={searchType} onChange={handleSearchTypeChange}>
@@ -183,7 +183,7 @@ const Uploads = () => {
             />
           </div>
         </div>
-        <table className="transactions-table">
+        <table className="employee-table">
           <thead>
               <tr>
                 <th>ID</th>
