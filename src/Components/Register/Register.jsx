@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Register.css';
 import 'boxicons/css/boxicons.min.css';
 import axios from 'axios'
-import register from '../photos/register1.png'
+import register from '../photos/file.png'
 import Footer from '../Foot/Footer';
 import Header from '../Head/Header'
 

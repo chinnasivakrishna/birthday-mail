@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css'
 
 const Footer = () => (
-  <footer style={{"backgroundColor":"lightblue", "height":"40px", "paddingTop":"-80px"}}>
+  <footer style={{"backgroundColor":"lightblue"}}>
     <div className="footer-content">
       <p>&copy; 2024 Birthday Mail Sender. All rights reserved.</p>
       <div className="social-media">

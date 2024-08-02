@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import login from '../photos/login.gif'
+import Header from '../Head/Header';
+import Footer from '../Foot/Footer';
 
 const LoginForm = () => {
   const [id, setId] = useState('');
@@ -55,6 +57,9 @@ const LoginForm = () => {
   };
 
   return (
+    <div>
+      <Header />
+    
     <div className="login-form-container">
       <div className='login-image'>
         <img src={login} className='login-images'/>
@@ -103,7 +108,9 @@ const LoginForm = () => {
         </form>
       </div>
       <ToastContainer position="top-center" />
-    </div>
+      </div>
+      <Footer />
+      </div>
   );
 };
 
