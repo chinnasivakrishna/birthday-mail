@@ -103,6 +103,7 @@ const ExcelFile = () => {
             console.log(convertedRow[DOB]);
             const response = await axios.post('https://birthday-5nx0.onrender.com/api/employees/add', {
               User: id,
+              Name: user,
               EmpName: convertedRow[Name],
               EMPID: convertedRow[EMPID],
               Email: convertedRow[Email],
